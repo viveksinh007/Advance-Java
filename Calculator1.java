@@ -6,9 +6,11 @@ import java.awt.event.ActionListener;
 
 public class Calculator1 extends Applet implements ActionListener
 {
+    //vaiable for Holind Value for textfield
+    int a,b,c;
+    String button_value,field_value,opretion,holding_value_of_textfield,holding_final_value_of_textfield;
 
-
-    TextField t1 = new TextField(20);
+    TextField t1 = new TextField(12);
     Button b1 = new Button("1");
     Button b2 = new Button("2");
     Button b3 = new Button("3");
@@ -89,7 +91,7 @@ public class Calculator1 extends Applet implements ActionListener
         p.add(bdot);
         p.add(bequal);
         bequal.setBackground(Color.cyan);
-
+        b0.addActionListener(this);
         b1.addActionListener(this);
         b2.addActionListener(this);
         b3.addActionListener(this);
@@ -99,13 +101,77 @@ public class Calculator1 extends Applet implements ActionListener
         b7.addActionListener(this);
         b8.addActionListener(this);
         b9.addActionListener(this);
+
+        //operation like + , - , / , * , %
+        bplus.addActionListener(this);
+        bdevide.addActionListener(this);
+        bminus.addActionListener(this);
+        bmultification.addActionListener(this);
+
+        //for equal
+        bequal.addActionListener(this);
         add(p,BorderLayout.CENTER);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e)
-    {
-        Button btn = (Button) e.getSource();
-        t1.setText(t1.getText() + btn.getLabel()+"");
+    public void actionPerformed(ActionEvent e) {
+        button_value = e.getActionCommand();
+                if (button_value.equals("7")|| button_value.equals("8")|| button_value.equals("9")||
+                    button_value.equals("4")|| button_value.equals("5")|| button_value.equals("6")||
+                    button_value.equals("1")|| button_value.equals("2")|| button_value.equals("3")||
+                    button_value.equals("0") )
+                {
+                    field_value = t1.getText() + button_value;
+                    t1.setText(field_value);
+                }
+
+                //For Operation like + , - , / , *
+
+                if(button_value.equals("+"))
+                {
+                    holding_value_of_textfield = t1.getText();
+                    t1.setText("");
+                    opretion = "+";
+                }
+                if(button_value.equals("-"))
+                {
+                    holding_value_of_textfield = t1.getText();
+                    t1.setText("");
+                    opretion = "-";
+                }
+                if(button_value.equals("/"))
+                {
+                    holding_value_of_textfield = t1.getText();
+                    t1.setText("");
+                    opretion = "/";
+                }
+                if(button_value.equals("x"))
+                {
+                    holding_value_of_textfield = t1.getText();
+                    t1.setText("");
+                    opretion = "x";
+                }
+
+        //for equal operation
+
+        if(button_value.equals("="))
+        {
+            holding_final_value_of_textfield = t1.getText();
+            a = Integer.parseInt(holding_value_of_textfield);
+            b = Integer.parseInt(holding_final_value_of_textfield);
+            if(opretion.equals("+"))
+                c = a + b ;
+            if(opretion.equals("-"))
+                c = a - b ;
+            if(opretion.equals("/"))
+                c = a / b ;
+            if(opretion.equals("x"))
+                c = a * b ;
+
+            t1.setText(String.valueOf(c));
+
+        }
+
     }
+
 }
