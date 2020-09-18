@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 public class Calculator1 extends Applet implements ActionListener
 {
     //vaiable for Holind Value for textfield
-    int a,b,c;
+    int First_number,Second_number,Ans;
     String button_value,field_value,opretion,holding_value_of_textfield,holding_final_value_of_textfield;
 
     TextField t1 = new TextField(12);
@@ -28,7 +28,7 @@ public class Calculator1 extends Applet implements ActionListener
     Button bdevide = new Button("/");
     Button bmod = new Button("%");
     Button bCE = new Button("CE");
-    Button bC = new Button("C");
+    Button bC =   new Button("C");
     Button bdelete = new Button("<-");
     Button b_by_x = new Button("1/x");
     Button b_x_squar = new Button("x2");
@@ -157,18 +157,18 @@ public class Calculator1 extends Applet implements ActionListener
         if(button_value.equals("="))
         {
             holding_final_value_of_textfield = t1.getText();
-            a = Integer.parseInt(holding_value_of_textfield);
-            b = Integer.parseInt(holding_final_value_of_textfield);
+            First_number = Integer.parseInt(holding_value_of_textfield);
+            Second_number = Integer.parseInt(holding_final_value_of_textfield);
             if(opretion.equals("+"))
-                c = a + b ;
+                Ans =   First_number + Second_number ;
             if(opretion.equals("-"))
-                c = a - b ;
+                Ans =   First_number - Second_number ;
             if(opretion.equals("/"))
-                c = a / b ;
+                Ans =   First_number / Second_number ;
             if(opretion.equals("x"))
-                c = a * b ;
+                Ans =   First_number * Second_number ;
 
-            t1.setText(String.valueOf(c));
+            t1.setText(String.valueOf(Ans));
 
         }
 
